@@ -1,10 +1,15 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Calibri', 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+label{
+    font-size:x-large;
+    align-self: center;
 }
 
 button{
@@ -37,7 +42,8 @@ button{
     display: flex;
     flex-direction: column;
     margin: auto 0 auto auto;
-    background-color: beige;
+    background-color: rgb(255, 255, 0);
+    width: 40%;
 }
 
 .buttonContainer{
@@ -48,14 +54,10 @@ button{
 
 .carModel{
     align-self: center;
+    width: 30%;
 }
 
 .carPrice{
-    font-size:x-large;
     color:brown;
-    margin-left: 5px;
-}
-
-label{
     align-self: center;
 }
