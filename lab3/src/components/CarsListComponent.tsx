@@ -6,10 +6,10 @@ import SearchBar from './SearchBar';
 export const CarsListComponent =() => {
     const [carsList, setCarsList] = useState<Car[]>(CARS);
     const [query, setQuery] = useState('');
-    return (
+    return ( 
         <>
             <SearchBar setQuery = {setQuery} />
-            <div>
+            <div style={{margin: 20}}>
                 {
                 carsList
                 .filter(carObject => carObject.name.toLowerCase().includes(query.toLowerCase()))

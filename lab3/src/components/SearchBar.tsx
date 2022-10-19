@@ -1,9 +1,10 @@
 import { useState } from "react";
+import "./Styles/SearchBar.css";
 
 interface SearchBarProps{
     setQuery(searchValue: string) :void
 }
-
+ 
 const SearchBar = (props:any, setCarsList:any) => {
     const filterCars = () => {
         props.setQuery(inputText);
@@ -13,8 +14,8 @@ const SearchBar = (props:any, setCarsList:any) => {
 
     return(
         <div>
-            <input onChange={ e => setInputText(e.target.value)}/>
-            <button onClick={filterCars}>Search</button>
+            <input className="textInput" onChange={ e => setInputText(e.target.value)}/>
+            <button className= "searchButton" onClick={filterCars}>Search</button>
         </div>
     )
 } 
