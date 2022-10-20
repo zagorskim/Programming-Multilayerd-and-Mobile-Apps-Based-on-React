@@ -13,6 +13,18 @@ export const CarsListComponent =() => {
         // setCarsList(carsList.filter(car => car.id != id));
     }
 
+    function changePricePerDay(newPrice: number, id: Key)
+    {
+        let temp = new Array(carsList.length);
+        let a = 0;
+        carsList.forEach(element => {
+            temp[a] = element;
+            a++;
+            });
+        temp[carsList.findIndex((car) => car.id == id)].pricePerDay = newPrice;
+        setCarsList(temp);
+    }
+
     return ( 
         <>
             <SearchBar setQuery = {setQuery} />
@@ -20,7 +32,7 @@ export const CarsListComponent =() => {
                 {
                 carsList
                 .filter(carObject => carObject.name.toLowerCase().includes(query.toLowerCase()))
-                .map(carObject => <CarsListItemComponent car={carObject} deleteCar={deleteCar}/>)
+                .map(carObject => <CarsListItemComponent car={carObject} deleteCar={deleteCar} changePrice={changePricePerDay}/>)
             }
             </div>
         </>

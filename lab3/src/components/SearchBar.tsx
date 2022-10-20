@@ -13,7 +13,7 @@ const SearchBar = (props:any, setCarsList:any) => {
     const[inputText, setInputText] = useState("");
 
     return(
-        <div>
+        <div className="searchBarContainer">
             <input className="textInput" onChange={ e => setInputText(e.target.value)}/>
             <button className= "searchButton" onClick={filterCars}>Search</button>
         </div>

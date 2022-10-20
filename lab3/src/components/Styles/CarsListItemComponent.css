@@ -1,5 +1,4 @@
 body {
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Calibri', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -15,12 +14,17 @@ label{
 button{
     margin: 5px;
     align-self: center;
+    width: 100px;
+    height: 30px;
 }
 
 .itemContainer{
     display: flex;
     flex-direction: row;
-    background-color: blueviolet;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    margin: 7px;
 }
 
 .carImage{
@@ -30,11 +34,11 @@ button{
     margin: 20px;
 }
 .labelContainer{
+    width: 20%;
     align-self: center;
     gap: 10px;
     display: flex;
     flex-direction:column;
-    background-color: aquamarine;
     margin: 20px;
 }
 
@@ -42,14 +46,14 @@ button{
     display: flex;
     flex-direction: column;
     margin: auto 0 auto auto;
-    background-color: rgb(255, 255, 0);
     width: 40%;
 }
 
 .buttonContainer{
     display: flex;
     align-self: center;
-    background-color:black;
+    height: 50px;
+    align-items: center;
 }
 
 .carModel{
@@ -58,6 +62,14 @@ button{
 }
 
 .carPrice{
-    color:brown;
+    width: 150px;
+    font-size: 29px;
+    text-align: left;
+    margin-left: 10px;
+    color: black;
+}
+
+.currencyLabel{
+    font-size: 32px;
     align-self: center;
 }
