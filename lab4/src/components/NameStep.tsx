@@ -24,9 +24,9 @@ export const NameStep: React.FC<NameStepProps> = (props) => {
             <form onSubmit={sendData}>
                 {/* submit button does not validating */}
                 <input minLength={3} onChange={(e) => setName(e.target.value)} value={name} required type="text" placeholder="name"></input>
-                <input onChange={(e) => setSurname(e.target.value)} value={surname} required type="text" placeholder="surname"></input>
+                <input minLength={3}  onChange={(e) => setSurname(e.target.value)} value={surname} required type="text" placeholder="surname"></input>
                 <input onChange={(e) => setEmail(e.target.value)} value={email} required type="email" placeholder="e-mail"></input>
-                <button type="submit" onClick={() => {props.saveFormData(name, surname, email); props.movetoNextStep();}}>Next</button>
+                <button type="submit" onSubmit={(e) => {props.saveFormData(name, surname, email); props.movetoNextStep();}}>Next</button>
             </form>
         </div>
     ) 
