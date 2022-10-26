@@ -2,7 +2,7 @@ import "./styles/AddressStep.css";
 import {AddressInput} from "./AddressInput";
 import React, {useState} from "react";
 import {Formik} from "formik";
-
+// TODO: add checkbox logic to disable invoice input address fields when it should be the same as the delivery address
 export interface AddressStepProps{
     movetoNextStep: (back: boolean) => void;
     saveFormData: (deliveryStreet: string, deliveryZipcode: string, deliveryCity: string,
@@ -19,6 +19,8 @@ export const AddressStep:React.FC<AddressStepProps> = (props: AddressStepProps) 
     const [invoiceCity, setInvoiceCity] = useState("");
 
     const [errors, setErrors] = useState([false, false, false, false, false, false])
+
+    const [toggle, setToggle] = useState(false);
 
     const  validateAddressData = () => {
         let validationStatus: boolean = true;
@@ -82,7 +84,11 @@ export const AddressStep:React.FC<AddressStepProps> = (props: AddressStepProps) 
         props.saveFormData(deliveryStreet, deliveryZipcode, deliveryCity, invoiceStreet, invoiceZipcode, invoiceCity);
     }
 
-    return ( 
+    function onToggleChange() {
+        //TODO: implement function
+    }
+
+    return (
         <div>
             <AddressInput setStreet={setDeliveryStreet} setZipcode={setDeliveryZipcode} setCity={setDeliveryCity}
                 streetError={errors[0]} zipcodeError={errors[1]} cityError={errors[2]}/>
@@ -90,6 +96,7 @@ export const AddressStep:React.FC<AddressStepProps> = (props: AddressStepProps) 
                 streetError={errors[3]} zipcodeError={errors[4]} cityError={errors[5]}/>
             <button onClick={() => props.movetoNextStep(true)}>Back</button>
             <button onClick={() => validateAddressData()}>Next</button>
+            <input type={"checkbox"} checked={toggle} onChange={() => onToggleChange()}></input>
         </div>
     ) 
 }

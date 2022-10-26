@@ -4,7 +4,7 @@ import "./styles/CustomerForm.css";
 import { AddressStep } from './AddressStep';
 import { SummaryStep } from './SummaryStep';
 import { UserData } from '../misc/UserDataInterface';
-
+// TODO: fill input fields with already gathered data when going back from further steps
 export const CustomerForm =() => {
     const [currentStep, setCurrentStep] = useState(0);
 
