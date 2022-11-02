@@ -20,6 +20,7 @@ export const AddressInput: React.FC<AddressInputProps> = (
   return (
     <div>
       <TextField
+        style={{margin: 20}}
         disabled={props.isDisabled}
         error={props.streetError}
         label="Street"
@@ -27,24 +28,29 @@ export const AddressInput: React.FC<AddressInputProps> = (
         required
         onChange={(e) => props.setStreet(e.target.value)}
         type="text"
+        value={props.storage[0]}
         defaultValue={props.storage[0]}
       ></TextField>
       <TextField
+        style={{margin: 20}}
         disabled={props.isDisabled}
         error={props.zipcodeError}
         label="Zip Code (DDD-DD)"
         helperText={props.zipcodeError ? "Wrong zipcode format" : ""}
         onChange={(e) => props.setZipcode(e.target.value)}
         type="zipcode"
+        value={props.storage[1]}
         defaultValue={props.storage[1]}
       ></TextField>
       <TextField
+        style={{margin: 20}}
         disabled={props.isDisabled}
         error={props.cityError}
         label="City"
         helperText={props.cityError ? "Entry too short" : ""}
         required
         onChange={(e) => props.setCity(e.target.value)}
+        value={props.storage[2]}
         defaultValue={props.storage[2]}
         type="text"
       ></TextField>

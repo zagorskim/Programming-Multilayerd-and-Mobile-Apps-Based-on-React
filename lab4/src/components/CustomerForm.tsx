@@ -20,6 +20,8 @@ export const CustomerForm = () => {
   };
   const [userData, setUserData] = useState<UserData>(temp);
 
+  const [toggle, setToggle] = useState<boolean>(false);
+
   const moveNextStep = (back: boolean = false, count: number = 1): void => {
     if (back) setCurrentStep((prev) => prev - count);
     else setCurrentStep((prev) => prev + count);
@@ -70,6 +72,8 @@ export const CustomerForm = () => {
           data={userData}
           movetoNextStep={moveNextStep}
           saveFormData={SetDataFromAddressStep}
+          toggle={toggle}
+          setToggle={setToggle}
         ></AddressStep>
       )}
       {currentStep == 2 && (

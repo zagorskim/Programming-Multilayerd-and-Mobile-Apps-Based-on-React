@@ -3,6 +3,8 @@ import { AddressInput } from "./AddressInput";
 import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { UserData } from "../misc/UserDataInterface";
+import { width } from "@mui/system";
+import { TextField } from '@mui/material';
 // TODO: add checkbox logic to disable invoice input address fields when it should be the same as the delivery address
 export interface AddressStepProps {
   data: UserData;
@@ -15,6 +17,8 @@ export interface AddressStepProps {
     invoiceZipcode: string,
     invoiceCity: string
   ) => void;
+  toggle: boolean;
+  setToggle: (b: boolean) => void;
 }
 
 export const AddressStep: React.FC<AddressStepProps> = (
@@ -41,8 +45,6 @@ export const AddressStep: React.FC<AddressStepProps> = (
     false,
     false,
   ]);
-
-  const [toggle, setToggle] = useState(false);
 
   const validateAddressData = (next: boolean = true) => {
     let validationStatus: boolean = true;
@@ -94,26 +96,25 @@ export const AddressStep: React.FC<AddressStepProps> = (
 
   function onToggleChange() {
     //TODO: fix changing strings in disabled textboxes and keep them disabled when coming back form other screens
-    if (toggle == false) {
-      setToggle(true);
+    if (props.toggle == false) {
       setInvoiceCity(deliveryCity);
       setInvoiceStreet(deliveryStreet);
       setInvoiceZipcode(deliveryZipcode);
-      sendData();
-      setToggle(true);
+      props.setToggle(true);
     } else {
-      setToggle(false);
+      props.setToggle(false);
     }
   }
 
   return (
     <div>
+      <h2>Delivery Address</h2>
       <AddressInput
         isDisabled={false}
         storage={[
-          props.data.deliverystreet,
-          props.data.deliveryzipcode,
-          props.data.deliverycity,
+          deliveryStreet,
+          deliveryZipcode,
+          deliveryCity,
         ]}
         setStreet={setDeliveryStreet}
         setZipcode={setDeliveryZipcode}
@@ -122,27 +123,33 @@ export const AddressStep: React.FC<AddressStepProps> = (
         zipcodeError={errors[1]}
         cityError={errors[2]}
       />
+      <h2>Invoice Address</h2>
       <AddressInput
-        isDisabled={toggle}
-        storage={[
-          props.data.invoicestreet,
-          props.data.invoicezipcode,
-          props.data.invoicecity,
+        isDisabled={props.toggle}
+        storage={props.toggle ? [
+          deliveryStreet,
+          deliveryZipcode,
+          deliveryCity,] : [
+          invoiceStreet,
+          invoiceZipcode,
+          invoiceCity,
         ]}
         setStreet={setInvoiceStreet}
         setZipcode={setInvoiceZipcode}
         setCity={setInvoiceCity}
-        streetError={errors[3]}
-        zipcodeError={errors[4]}
-        cityError={errors[5]}
+        streetError={props.toggle ? errors[0] : errors[3]}
+        zipcodeError={props.toggle ? errors[1] : errors[4]}
+        cityError={props.toggle ? errors[2] : errors[5]}
       />
-      <button onClick={() => props.movetoNextStep(true)}>Back</button>
-      <button onClick={() => validateAddressData()}>Next</button>
+      <div style={{height: 20, width:40}}/>
+      <button style={{margin: 20}} onClick={() => props.movetoNextStep(true)}>Back</button>
+      <button style={{margin: 20}} onClick={() => validateAddressData()}>Next</button>
       <input
         type={"checkbox"}
-        checked={toggle}
+        checked={props.toggle}
         onChange={() => onToggleChange()}
       ></input>
+      <label>Invoice address the same as delivery address</label>
     </div>
   );
 };
