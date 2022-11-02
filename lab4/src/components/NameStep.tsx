@@ -24,6 +24,7 @@ export const NameStep: React.FC<NameStepProps> = (props) => {
       <form onSubmit={sendData}>
         {/* submit button does not validating */}
         <input
+          style={{ margin: 20 }}
           minLength={3}
           onChange={(e) => setName(e.target.value)}
           value={name}
@@ -32,6 +33,7 @@ export const NameStep: React.FC<NameStepProps> = (props) => {
           placeholder="name"
         ></input>
         <input
+          style={{ margin: 20 }}
           minLength={3}
           onChange={(e) => setSurname(e.target.value)}
           value={surname}
@@ -40,6 +42,7 @@ export const NameStep: React.FC<NameStepProps> = (props) => {
           placeholder="surname"
         ></input>
         <input
+          style={{ margin: 20 }}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           required
@@ -47,6 +50,7 @@ export const NameStep: React.FC<NameStepProps> = (props) => {
           placeholder="e-mail"
         ></input>
         <button
+          style={{ margin: 20 }}
           type="submit"
           onSubmit={(e) => {
             props.saveFormData(name, surname, email);

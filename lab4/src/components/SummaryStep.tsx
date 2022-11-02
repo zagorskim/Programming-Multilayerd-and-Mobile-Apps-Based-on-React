@@ -23,10 +23,16 @@ export const SummaryStep: React.FC<SummaryStepProps> = (props) => {
       <p>{user.invoicestreet}</p>
       <p>{user.invoicezipcode}</p>
       <p>{user.invoicecity}</p>
-      <button style={{margin: 20}} onClick={() => props.movetoNextStep(true, 2)}>
+      <button
+        style={{ margin: 20 }}
+        onClick={() => props.movetoNextStep(true, 2)}
+      >
         Back to Name Step
       </button>
-      <button style={{margin: 20}} onClick={() => props.movetoNextStep(true, 1)}>
+      <button
+        style={{ margin: 20 }}
+        onClick={() => props.movetoNextStep(true, 1)}
+      >
         Back to Address Step
       </button>
     </div>

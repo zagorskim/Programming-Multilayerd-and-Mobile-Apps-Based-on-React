@@ -20,7 +20,7 @@ export const AddressInput: React.FC<AddressInputProps> = (
   return (
     <div>
       <TextField
-        style={{margin: 20}}
+        style={{ margin: 20 }}
         disabled={props.isDisabled}
         error={props.streetError}
         label="Street"
@@ -32,7 +32,7 @@ export const AddressInput: React.FC<AddressInputProps> = (
         defaultValue={props.storage[0]}
       ></TextField>
       <TextField
-        style={{margin: 20}}
+        style={{ margin: 20 }}
         disabled={props.isDisabled}
         error={props.zipcodeError}
         label="Zip Code (DDD-DD)"
@@ -43,7 +43,7 @@ export const AddressInput: React.FC<AddressInputProps> = (
         defaultValue={props.storage[1]}
       ></TextField>
       <TextField
-        style={{margin: 20}}
+        style={{ margin: 20 }}
         disabled={props.isDisabled}
         error={props.cityError}
         label="City"

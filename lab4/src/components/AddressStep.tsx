@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { UserData } from "../misc/UserDataInterface";
 import { width } from "@mui/system";
-import { TextField } from '@mui/material';
+import { TextField } from "@mui/material";
 // TODO: add checkbox logic to disable invoice input address fields when it should be the same as the delivery address
 export interface AddressStepProps {
   data: UserData;
@@ -111,11 +111,7 @@ export const AddressStep: React.FC<AddressStepProps> = (
       <h2>Delivery Address</h2>
       <AddressInput
         isDisabled={false}
-        storage={[
-          deliveryStreet,
-          deliveryZipcode,
-          deliveryCity,
-        ]}
+        storage={[deliveryStreet, deliveryZipcode, deliveryCity]}
         setStreet={setDeliveryStreet}
         setZipcode={setDeliveryZipcode}
         setCity={setDeliveryCity}
@@ -126,14 +122,11 @@ export const AddressStep: React.FC<AddressStepProps> = (
       <h2>Invoice Address</h2>
       <AddressInput
         isDisabled={props.toggle}
-        storage={props.toggle ? [
-          deliveryStreet,
-          deliveryZipcode,
-          deliveryCity,] : [
-          invoiceStreet,
-          invoiceZipcode,
-          invoiceCity,
-        ]}
+        storage={
+          props.toggle
+            ? [deliveryStreet, deliveryZipcode, deliveryCity]
+            : [invoiceStreet, invoiceZipcode, invoiceCity]
+        }
         setStreet={setInvoiceStreet}
         setZipcode={setInvoiceZipcode}
         setCity={setInvoiceCity}
@@ -141,9 +134,13 @@ export const AddressStep: React.FC<AddressStepProps> = (
         zipcodeError={props.toggle ? errors[1] : errors[4]}
         cityError={props.toggle ? errors[2] : errors[5]}
       />
-      <div style={{height: 20, width:40}}/>
-      <button style={{margin: 20}} onClick={() => props.movetoNextStep(true)}>Back</button>
-      <button style={{margin: 20}} onClick={() => validateAddressData()}>Next</button>
+      <div style={{ height: 20, width: 40 }} />
+      <button style={{ margin: 20 }} onClick={() => props.movetoNextStep(true)}>
+        Back
+      </button>
+      <button style={{ margin: 20 }} onClick={() => validateAddressData()}>
+        Next
+      </button>
       <input
         type={"checkbox"}
         checked={props.toggle}
