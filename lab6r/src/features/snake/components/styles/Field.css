@@ -1,18 +1,7 @@
 .div{
-    display:inline-block;
     width: 20px;
     height: 20px;
     background: blue;
     margin: 0;
 
-}
-
-.rect{
-    display: flex;
-    align-items: center;
-    width: 10;
-    height: 10;
-    background-color: black;
-    margin: 0;
-    
 }
