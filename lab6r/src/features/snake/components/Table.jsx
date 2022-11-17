@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useRef } from "react";
 
+// Flag of game status (run/stopped = lose) and eating mechanism to be added
 export const Table = () => {
   const length = useSelector(selectLength);
   const head = useSelector(selectHead);
@@ -104,8 +105,8 @@ export const Table = () => {
     <div className="main" >
       <h1>Snake</h1>
       <div autoFocus="true" className="grid">{rows}</div>
-      <button onClick={() => {dispatch(setSnake([[6, 2], [0, 0, 0, 0]]));moveForward(lastDir, dispatch, iid)}}>Start</button>
-      <button onClick={() => {clearInterval(iid.current);}}>Stop</button>
+      <button className="button" onClick={() => {dispatch(setSnake([[6, 2], [0, 0, 0, 0, 0]]));moveForward(lastDir, dispatch, iid)}}>Start</button>
+      <button className= "button" onClick={() => {clearInterval(iid.current);}}>Stop</button>
     </div>
   );
 };
@@ -128,7 +129,7 @@ const moveForward = (lastDir, dispatch, iid) => {
     default:
       console.log("default")
   }
-}, 500)}
+}, 100)}
 
 const CalculateTab = (head, directions, size, board) => {
 

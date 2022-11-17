@@ -1,9 +1,10 @@
-.mainDiv{
+.div{
     display:inline-block;
     width: 20px;
     height: 20px;
     background: blue;
     margin: 0;
+
 }
 
 .rect{
@@ -13,4 +14,5 @@
     height: 10;
     background-color: black;
     margin: 0;
+    
 }
