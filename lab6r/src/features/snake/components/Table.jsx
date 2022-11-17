@@ -6,6 +6,7 @@ import {
   moveUp,
   moveDown,
   moveRight,
+  setSnake,
   selectLength,
   selectHead,
   selectDirections,
@@ -13,23 +14,85 @@ import {
 } from "../snakeSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 export const Table = () => {
   const length = useSelector(selectLength);
   const head = useSelector(selectHead);
   const directions = useSelector(selectDirections);
   const size = useSelector(selectSize);
-
+  const lastDir = useRef(directions[directions.length - 1]);
+  const iid = useRef(0);
+  //const [dirs, setDirs] = useState(directions);
+  //useEffect(() => setDirs(directions))
   let board = [];
   board.length = size * size;
   board.fill(0);
   const dispatch = useDispatch();
   let rows = []; 
   useEffect(() => {
+
   }, [])
   
   CalculateTab(head, directions, size, board);
   
+  document.onkeydown = (e) =>{ 
+    let name = e.name;
+    let code = e.code;
+    switch(code){
+    case "ArrowUp":
+      if(directions[directions.length - 1] != 1 && directions[directions.length - 1] != 3)
+      {
+        dispatch(moveUp());
+        lastDir.current = 1;
+      }
+      break;
+    case "ArrowDown":
+      if(directions[directions.length - 1] != 1 && directions[directions.length - 1] != 3) {
+        dispatch(moveDown());
+        lastDir.current = 3;
+      }
+      break;
+    case "ArrowLeft":
+      if(directions[directions.length - 1] != 0 && directions[directions.length - 1] != 2) {
+        dispatch(moveLeft());
+        lastDir.current = 2;
+      }
+      break;
+    case "ArrowRight":
+      if(directions[directions.length - 1] != 0 && directions[directions.length - 1] != 2) {
+        dispatch(moveRight());
+        lastDir.current = 0;
+      }
+      break;
+    case "KeyW":
+      if(directions[directions.length - 1] != 1 && directions[directions.length - 1] != 3) {
+        dispatch(moveUp());
+        lastDir.current = 1;
+      }
+      break;
+    case "KeyS":
+      if(directions[directions.length - 1] != 1 && directions[directions.length - 1] != 3) {
+        dispatch(moveDown());
+        lastDir.current = 3;
+      }
+      break;
+    case "KeyA":
+      if(directions[directions.length - 1] != 0 && directions[directions.length - 1] != 2) {
+        dispatch(moveLeft());
+        lastDir.current = 2;
+      }
+      break;
+    case "KeyD":
+      if(directions[directions.length - 1] != 0 && directions[directions.length - 1] != 2) {
+        dispatch(moveRight());
+        lastDir.current = 0;
+      }
+      break;
+    default:
+    }
+  }
+
   for (let y = 0; y < size; y++) {
     const cells = [];
     for (let x = 0; x < size; x++) {
@@ -37,48 +100,35 @@ export const Table = () => {
     }
     rows.push(<tr>{cells}</tr>);
   }
-  document.onkeydown = (e) =>{ 
-    let name = e.name;
-    let code = e.code;
-    switch(code){
-    case "ArrowUp":
-      dispatch(moveUp());
-      break;
-    case "ArrowDown":
-      dispatch(moveDown());
-      break;
-    case "ArrowLeft":
-      dispatch(moveLeft());
-      break;
-    case "ArrowRight":
-      dispatch(moveRight());
-      break;
-      case "KeyW":
-        dispatch(moveUp());
-        break;
-      case "KeyS":
-        dispatch(moveDown());
-        break;
-      case "KeyA":
-        dispatch(moveLeft());
-        break;
-      case "KeyD":
-        dispatch(moveRight());
-        break;
-    default:
-    }}
-
   return (
     <div className="main" >
       <h1>Snake</h1>
       <div autoFocus="true" className="grid">{rows}</div>
-      <button onClick={() => dispatch(moveLeft())}>Left</button>
-      <button onClick={() => dispatch(moveUp())}>Up</button>
-      <button onClick={() => dispatch(moveRight())}>Right</button>
-      <button onClick={() => dispatch(moveDown())}>Down</button>
+      <button onClick={() => {dispatch(setSnake([[6, 2], [0, 0, 0, 0]]));moveForward(lastDir, dispatch, iid)}}>Start</button>
+      <button onClick={() => {clearInterval(iid.current);}}>Stop</button>
     </div>
   );
 };
+
+const moveForward = (lastDir, dispatch, iid) => {
+  iid.current = setInterval(() => {
+    switch(lastDir.current) {
+    case 0:
+      dispatch(moveRight());
+      break;
+    case 1:
+      dispatch(moveUp());
+      break;
+    case 2:
+      dispatch(moveLeft());
+      break;
+    case 3:
+      dispatch(moveDown());
+      break;
+    default:
+      console.log("default")
+  }
+}, 500)}
 
 const CalculateTab = (head, directions, size, board) => {
 

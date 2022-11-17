@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   head: [6, 2],
-  directions: [0, 0, 0, 0], // 0 - left, 1 - up, 2 - right, 3 - down
+  directions: [0, 0, 0, 0, 0], // 0 - left, 1 - up, 2 - right, 3 - down
   length: 5,
   tab: [],
   size: 35,
@@ -36,15 +36,20 @@ export const snakeSlice = createSlice({
     },
     moveRight: (state) => {
       if(state.head[0] < state.size - 1) {
-      state.head[0] += 1;
-      state.directions.push(0);
-      state.directions.shift();
+        state.head[0] += 1;
+        state.directions.push(0);
+        state.directions.shift();
       }
+    },
+    setSnake: (state, action) => {
+      state.head = action.payload[0];
+      state.directions = action.payload[1];
+      state.length = state.directions.length + 1;
     },
   },
 });
 
-export const { moveUp, moveDown, moveLeft, moveRight } = snakeSlice.actions;
+export const { moveUp, moveDown, moveLeft, moveRight, setSnake } = snakeSlice.actions;
 
 export const selectHead = (state) => state.snake.head;
 
