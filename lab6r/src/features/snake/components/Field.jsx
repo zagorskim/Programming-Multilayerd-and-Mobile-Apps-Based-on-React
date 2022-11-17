@@ -4,7 +4,7 @@ import "./styles/Field.css";
 export const Field = (props) => {
 
   return (
-      <div background-color={props.constent == 0 ? "black" : "green"} class="mainDiv">
+      <div style={props.content == 0 ? {background:'black'} : props.content == 1 ? {background:'green'} : {background:'red'}} class="mainDiv">
         
       </div>
   );

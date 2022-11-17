@@ -1,5 +1,4 @@
 .grid{
     display: grid;
-    grid-template-rows: repeat(15, 50px);
-    background-color:blueviolet;
+    grid-template-rows: repeat(35, 20px);
 }

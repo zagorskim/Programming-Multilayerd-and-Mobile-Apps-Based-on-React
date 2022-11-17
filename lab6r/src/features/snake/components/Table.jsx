@@ -9,64 +9,99 @@ import {
   selectLength,
   selectHead,
   selectDirections,
+  selectSize,
 } from "../snakeSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 export const Table = () => {
-  const size = 15;
   const length = useSelector(selectLength);
   const head = useSelector(selectHead);
   const directions = useSelector(selectDirections);
-  let tab = [];
+  const size = useSelector(selectSize);
+
+  let board = [];
+  board.length = size * size;
+  board.fill(0);
   const dispatch = useDispatch();
-
-  const CalculateTab = (head, directions, size) => {
-    let tab = [];
-    tab.length = size * size;
-    tab.fill(0);
-    tab[head[0] + head[1] * size] = 2;
-    let x = head;
-    const reversedDirections = directions.reverse();
-    directions.forEach((element) => {
-      switch (element) {
-        case 0:
-          x[0]--;
-          break;
-        case 1:
-          x[1]++;
-          break;
-        case 1:
-          x[0]++;
-          break;
-        case 1:
-          x[1]--;
-          break;
-      }
-      tab[x[1] * size + x[0]] = 1;
-    });
-    return tab;
-  };
-
-  tab = CalculateTab([6, 2], [0,0,0,0], size);
-  console.log(tab);
-  let rows = [];
-  for (let y = 0; y < 15; y++) {
+  let rows = []; 
+  useEffect(() => {
+  }, [])
+  
+  CalculateTab(head, directions, size, board);
+  
+  for (let y = 0; y < size; y++) {
     const cells = [];
-    for (let x = 0; x < 15; x++) {
-      cells.push(<Field content={tab[y * 15 + x]} id={y * 15 + x} />);
+    for (let x = 0; x < size; x++) {
+      cells.push(<Field content={board[y * size + x]} id={y * size + x} />);
     }
     rows.push(<tr>{cells}</tr>);
   }
+  document.onkeydown = (e) =>{ 
+    let name = e.name;
+    let code = e.code;
+    switch(code){
+    case "ArrowUp":
+      dispatch(moveUp());
+      break;
+    case "ArrowDown":
+      dispatch(moveDown());
+      break;
+    case "ArrowLeft":
+      dispatch(moveLeft());
+      break;
+    case "ArrowRight":
+      dispatch(moveRight());
+      break;
+      case "KeyW":
+        dispatch(moveUp());
+        break;
+      case "KeyS":
+        dispatch(moveDown());
+        break;
+      case "KeyA":
+        dispatch(moveLeft());
+        break;
+      case "KeyD":
+        dispatch(moveRight());
+        break;
+    default:
+    }}
 
   return (
-    <div class="main">
-      <h1>Snake Game</h1>
-      <div class="grid">{rows}</div>
+    <div className="main" >
+      <h1>Snake</h1>
+      <div autoFocus="true" className="grid">{rows}</div>
       <button onClick={() => dispatch(moveLeft())}>Left</button>
       <button onClick={() => dispatch(moveUp())}>Up</button>
       <button onClick={() => dispatch(moveRight())}>Right</button>
       <button onClick={() => dispatch(moveDown())}>Down</button>
     </div>
   );
+};
+
+const CalculateTab = (head, directions, size, board) => {
+
+  let x = [...head];
+  let reversedDirections = [...directions];
+  board.fill(0);
+  board[head[0] + head[1] * size] = 2;
+  reversedDirections.reverse();
+  reversedDirections.forEach((element) => {
+    switch (element) {
+      case 0:
+        x[0]--;
+        break;
+      case 1:
+        x[1]++;
+        break;
+      case 2:
+        x[0]++;
+        break;
+      case 3:
+        x[1]--;
+        break;
+    }
+    board[x[1] * size + x[0]] = 1;
+  });
 };
