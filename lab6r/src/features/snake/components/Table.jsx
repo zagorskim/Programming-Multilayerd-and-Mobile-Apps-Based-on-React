@@ -142,6 +142,7 @@ export const Table = () => {
       <button
         className="button"
         onClick={() => {
+          console.log(iid.current)
           dispatch(ChangeGameMode(true));
           moveForward(lastDir, dispatch, iid);
         }}
@@ -159,6 +160,7 @@ export const Table = () => {
             ])
           );
           lastDir.current = 0;
+          clearInterval(iid.current);
           moveForward(lastDir, dispatch, iid);
         }}
       >
@@ -179,11 +181,12 @@ export const Table = () => {
 
 export const calculateFoodCoords = (size, contents) => {
   let x = [];
+  console.log(contents)
   if (contents !== undefined) {
     do {
       x[0] = Math.floor(Math.random() * size);
       x[1] = Math.floor(Math.random() * size);
-    } while (contents[(x[0], x[1])] != 0);
+    } while (contents[x[0] + size * x[1]] != 0);
   } else {
     x[0] = Math.floor(Math.random() * size);
     x[1] = Math.floor(Math.random() * size);
