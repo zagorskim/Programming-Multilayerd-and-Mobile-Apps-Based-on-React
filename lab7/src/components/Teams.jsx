@@ -1,27 +1,35 @@
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
-  import {Container, Box, Button, Stack, Input} from '@mui/material/'
-  import { countryCodeState, teamNameSelector } from '../atoms/MatchAtom';
-import { useEffect } from 'react';
+import { useRecoilState } from "recoil";
+import { Stack, TextField } from "@mui/material/";
+import { countryCodeState } from "../atoms/MatchAtom";
+import { useEffect } from "react";
 
-  const Teams = () => {
+const Teams = () => {
+  const [teams, setTeams] = useRecoilState(countryCodeState);
+  useEffect(() => {}, [teams]);
+  return (
+    <>
+      <Stack direction="horizontal">
+        <TextField
+          placeholder="Home team"
+          multiline="true"
+          size="small"
+          style={{ margin: 20 }}
+          onChange={(e) => setTeams([e.target.value, teams[1]])}
+        >
+          First team name
+        </TextField>
+        <TextField
+          placeholder="Guest team"
+          multiline="true"
+          size="small"
+          style={{ margin: 20 }}
+          onChange={(e) => setTeams([teams[0], e.target.value])}
+        >
+          Second team name
+        </TextField>
+      </Stack>
+    </>
+  );
+};
 
-    const [teams, setTeams] = useRecoilState(countryCodeState);
-        useEffect(() => {
-    }, [teams]);
-    return (
-        <>
-            <Stack direction='horizontal' spacing="5">
-                <Input  type='text' onChange={(e) => setTeams([e.target.value, teams[1]])}></Input>
-                <Input  type='text' onChange={(e) => setTeams([teams[0], e.target.value])}></Input>
-            </Stack>
-        </>
-    )
-  }
-
-  export default Teams;
+export default Teams;

@@ -1,10 +1,4 @@
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { atom, selector } from "recoil";
 import Axios from "axios";
 
 export const countryCodeState = atom({
@@ -14,8 +8,8 @@ export const countryCodeState = atom({
 
 export const countryNameState = atom({
   key: "countryNameState",
-  default: ['', ''],
-})
+  default: ["", ""],
+});
 
 export const stadiumState = atom({
   key: "stadiumState",
@@ -24,7 +18,7 @@ export const stadiumState = atom({
 
 export const scoreState = atom({
   key: "scoreState",
-  default: ["", ""],
+  default: [0, 0],
 });
 
 export const teamNameSelector = selector({
@@ -40,4 +34,3 @@ export const teamNameSelector = selector({
     ];
   },
 });
-

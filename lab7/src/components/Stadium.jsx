@@ -1,24 +1,26 @@
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-  } from 'recoil';
-import {Container, Box, Button, Stack, Input} from '@mui/material/'
-import { stadiumState } from '../atoms/MatchAtom';
+import { useRecoilState } from "recoil";
+import { Stack, TextField } from "@mui/material/";
+import { stadiumState } from "../atoms/MatchAtom";
 
-  const Stadium = () => {
+const Stadium = () => {
+  const [stadium, setStadium] = useRecoilState(stadiumState);
 
-    const [stadium, setStadium] = useRecoilState(stadiumState);
+  return (
+    <>
+      <Stack direction="horizontal">
+        <TextField
+          multiline="true"
+          size="small"
+          style={{ margin: 20 }}
+          variant="outlined"
+          type="text"
+          onChange={(e) => setStadium([e.target.value])}
+        >
+          Stadium
+        </TextField>
+      </Stack>
+    </>
+  );
+};
 
-    return (
-        <>
-            <Stack direction='horizontal'>
-                <Input variant='outlined' type='text' onChange={(e) => setStadium([e.target.value])}>Stadium</Input>
-            </Stack>
-        </>
-    )
-  }
-
-  export default Stadium;
+export default Stadium;

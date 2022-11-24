@@ -1,11 +1,5 @@
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-import { Container, Box, Button, Stack } from "@mui/material/";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { Button, Stack } from "@mui/material/";
 import {
   countryCodeState,
   countryNameState,
@@ -15,13 +9,11 @@ import {
 import { useEffect } from "react";
 
 const Score = () => {
-  // Selector for teams instead
   useRecoilValue(teamNameSelector);
   const [countryCode, setCountryCode] = useRecoilState(countryCodeState);
   const [countryName, setCountryNameState] = useRecoilState(countryNameState);
   const [scores, setScores] = useRecoilState(scoreState);
   const promises = useRecoilValue(teamNameSelector);
-  //let names = readPromise(teamNames, setCountryNameState);
 
   useEffect(() => {
     Promise.resolve(promises[0])
@@ -49,20 +41,30 @@ const Score = () => {
 
   return (
     <>
-      <Stack direction="horizontal">
-        <Button variant="outlined">Goal for {countryName[0]}</Button>
-        <Button variant="outlined">Goal for {countryName[1]}</Button>
+      <Stack spacing={5} direction="horizontal">
+        <Button
+          style={{ margin: 20 }}
+          color="inherit"
+          onClick={() => {
+            setScores([String(Number(scores[0]) + 1), scores[1]]);
+          }}
+          variant="contained"
+        >
+          Goal for {countryName[0]}
+        </Button>
+        <Button
+          style={{ margin: 20 }}
+          color="inherit"
+          onClick={() => {
+            setScores([scores[0], String(Number(scores[1]) + 1)]);
+          }}
+          variant="contained"
+        >
+          Goal for {countryName[1]}
+        </Button>
       </Stack>
     </>
   );
 };
-
-async function readPromise(promise, setter) {
-  let names = ["", ""];
-  Promise.all(promise).then((res) =>
-    setter([res[0].data[0].name.common, res[1].data[0].name.common])
-  );
-  return names;
-}
 
 export default Score;
