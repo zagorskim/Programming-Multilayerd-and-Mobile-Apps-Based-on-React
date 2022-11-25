@@ -1,9 +1,10 @@
 import { useRecoilState } from "recoil";
 import { Box, Stack } from "@mui/material/";
-import { stadiumState, scoreState, countryCodeState } from "../atoms/MatchAtom";
+import { stadiumState, scoreState, countryCodeState, countryNameState } from "../atoms/MatchAtom";
 
 const Preview = () => {
   const [countryCode, setCountryCode] = useRecoilState(countryCodeState);
+  const [countryName, setCountryNameState] = useRecoilState(countryNameState);
   const [stadium, setStadium] = useRecoilState(stadiumState);
   const [score, setScore] = useRecoilState(scoreState);
 
@@ -28,7 +29,7 @@ const Preview = () => {
                 component="img"
                 sx={{ width: 200, heigth: 70 }}
                 src={
-                  countryCode[0] != ""
+                  countryName[0] != ""
                     ? "https://countryflagsapi.com/png/" + countryCode[0]
                     : "https://sf-administracja.wpcdn.pl/storage2/featured_original/57758197dbda25_54600333.jpg"
                 }
@@ -38,7 +39,7 @@ const Preview = () => {
                 component="img"
                 sx={{ width: 200, heigth: 70 }}
                 src={
-                  countryCode[0] != ""
+                  countryName[1] != ""
                     ? "https://countryflagsapi.com/png/" + countryCode[1]
                     : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_B3EVHRC60FPdCvIWEcnMFmtZskzm8pUb3A&usqp=CAU"
                 }

@@ -50,7 +50,7 @@ const Score = () => {
           }}
           variant="contained"
         >
-          Goal for {countryName[0]}
+          Goal for {countryName[0] != '' ? countryName[0] : countryCode[0]}
         </Button>
         <Button
           style={{ margin: 20 }}
@@ -60,7 +60,7 @@ const Score = () => {
           }}
           variant="contained"
         >
-          Goal for {countryName[1]}
+          Goal for {countryName[1] != '' ? countryName[1] : countryCode[1]}
         </Button>
       </Stack>
     </>
