@@ -1,0 +1,75 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Calibri', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+label{
+    font-size:x-large;
+    align-self: center;
+}
+
+button{
+    margin: 5px;
+    align-self: center;
+    width: 100px;
+    height: 30px;
+}
+
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    margin: 7px;
+}
+
+.carImage{
+    width: 20%;
+    height: 20%;
+    align-self: center;
+    margin: 20px;
+}
+.labelContainer{
+    width: 20%;
+    align-self: center;
+    gap: 10px;
+    display: flex;
+    flex-direction:column;
+    margin: 20px;
+}
+
+.priceContainer{
+    display: flex;
+    flex-direction: column;
+    margin: auto 0 auto auto;
+    width: 40%;
+}
+
+.buttonContainer{
+    display: flex;
+    align-self: center;
+    height: 50px;
+    align-items: center;
+}
+
+.carModel{
+    align-self: center;
+    width: 30%;
+}
+
+.carPrice{
+    width: 150px;
+    font-size: 29px;
+    text-align: left;
+    margin-left: 10px;
+    color: black;
+}
+
+.currencyLabel{
+    font-size: 32px;
+    align-self: center;
+}

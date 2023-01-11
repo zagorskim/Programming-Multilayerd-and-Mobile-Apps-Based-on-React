@@ -1,0 +1,48 @@
+.Player{
+    background-color: antiquewhite;
+    margin: 2%;
+    padding:0.2%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: black;
+}
+
+.ButtonDiv{
+    width: 100%;
+    padding: 0%;
+    display:flex; 
+}
+.PlayerRect{
+    width: 95%;
+}
+
+label{
+    display:block;
+}
+
+.SLabels{
+    margin: 1% 0%;
+}
+
+.VLabels{
+    display: inline-block;
+    padding: 0% 2%;
+}
+
+#Title{
+    padding: 0.5% 0%;
+}
+
+.PlayButton{
+    vertical-align: top;
+    width: 30%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+
+#NOLabel{
+    width: 100%;
+}

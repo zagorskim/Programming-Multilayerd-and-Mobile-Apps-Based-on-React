@@ -1,0 +1,15 @@
+.searchBarContainer{
+    width:fit-content;
+    padding: 5px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    margin: 27px;
+}
+
+.textInput{
+    margin: 20px;
+    height: 20px;
+    border-width: 3px;
+
+}
